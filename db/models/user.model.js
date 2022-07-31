@@ -34,7 +34,7 @@ const userSchema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  role: {
+  roleId: {
     allowNull: false,
     type: DataTypes.STRING,
     defaultValue: "user",

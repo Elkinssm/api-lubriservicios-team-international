@@ -9,21 +9,28 @@ const cellPhone = Joi.number().integer();
 const documentType = Joi.string().min(2);
 const address = Joi.string();
 const role = Joi.string().min(3);
+const roleId = Joi.number().integer();
 
 const createUserSchema = Joi.object({
   email: email.required(),
   password: password.required(),
-  role: role.required(),
   documentNumber: documentNumber.required(),
   cellPhone: cellPhone.required(),
   documentType: documentType.required(),
   address: address.required(),
   name: name.required(),
+  roleId: roleId.required(),
 });
 
 const updateUserSchema = Joi.object({
   email: email,
-  role: role,
+  password: password,
+  documentNumber: documentNumber,
+  cellPhone: cellPhone,
+  documentType: documentType,
+  address: address,
+  name: name,
+  roleId: roleId,
 });
 
 const getUserSchema = Joi.object({
