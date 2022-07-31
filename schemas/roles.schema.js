@@ -14,12 +14,12 @@ const updateRolesSchema = Joi.object({
   description: description,
 });
 
-const deleteRolesSchema = Joi.object({
+const getRolesSchema = Joi.object({
   id: id.required(),
 });
 
 module.exports = {
   createRolesSchema,
   updateRolesSchema,
-  deleteRolesSchema,
+  getRolesSchema,
 };

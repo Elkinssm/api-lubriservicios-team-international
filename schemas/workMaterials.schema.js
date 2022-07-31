@@ -17,12 +17,12 @@ const updateworkMaterialSchema = Joi.object({
   workTypeId: workTypeId,
 });
 
-const deleteworkMaterialSchema = Joi.object({
+const getworkMaterialSchema = Joi.object({
   id: id.required(),
 });
 
 module.exports = {
   createworkMaterialSchema,
   updateworkMaterialSchema,
-  deleteworkMaterialSchema,
+  getworkMaterialSchema,
 };

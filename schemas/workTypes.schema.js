@@ -14,12 +14,12 @@ const updateWorkTypeSchema = Joi.object({
   description: description,
 });
 
-const deleteWorkTypeSchema = Joi.object({
+const getWorkTypeSchema = Joi.object({
   id: id.required(),
 });
 
 module.exports = {
   createWorkTypesSchema,
   updateWorkTypeSchema,
-  deleteWorkTypeSchema,
+  getWorkTypeSchema,
 };

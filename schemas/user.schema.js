@@ -8,7 +8,6 @@ const documentNumber = Joi.number().integer();
 const cellPhone = Joi.number().integer();
 const documentType = Joi.string().min(2);
 const address = Joi.string();
-const role = Joi.string().min(3);
 const roleId = Joi.number().integer();
 
 const createUserSchema = Joi.object({
