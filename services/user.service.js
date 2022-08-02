@@ -2,7 +2,6 @@ const boom = require("@hapi/boom");
 
 const { models } = require("./../libs/sequelize");
 const bcrypt = require("bcrypt");
-const Rol = require("./../db/models/roles.models");
 
 class UserService {
   constructor() {}
@@ -19,7 +18,7 @@ class UserService {
 
   async find() {
     const response = await models.User.findAll({
-      include: ["rol"],
+      include: ["rol", "vehicle"],
     });
     return response;
   }

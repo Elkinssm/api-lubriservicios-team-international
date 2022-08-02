@@ -2,7 +2,7 @@ const express = require("express");
 
 const VehicleService = require("./../services/vehicle.service");
 const validatorHandler = require("./../middlewares/validator.handler");
-const passport = require("passport");
+//const passport = require("passport");
 const {
   createVehicleSchema,
   getVehicleSchema,
@@ -14,7 +14,7 @@ const service = new VehicleService();
 
 router.get(
   "/",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   async (req, res, next) => {
     try {
       const vehicles = await service.find();

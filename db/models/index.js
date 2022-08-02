@@ -17,9 +17,9 @@ const setupModels = (sequelize) => {
   User.init(userSchema, User.config(sequelize));
   //Material.init(materialSchema, Material.config(sequelize));
   //OrderWorkType.init(orderWorkTypeSchema, OrderWorkType.config(sequelize));
-  //Order.init(orderSchema, Order.config(sequelize));
+  Order.init(orderSchema, Order.config(sequelize));
   Rol.init(rolSchema, Rol.config(sequelize));
-  // Vehicle.init(vehicleSchema, Vehicle.config(sequelize));
+  Vehicle.init(vehicleSchema, Vehicle.config(sequelize));
   //WorkMaterials.init(workMaterialsSchema, WorkMaterials.config(sequelize));
   // WorkTypes.init(workTypesSchema, WorkTypes.config(sequelize));
 
@@ -27,9 +27,9 @@ const setupModels = (sequelize) => {
   User.associate(sequelize.models);
   //WorkTypes.associate(sequelize.models);
   //Material.associate(sequelize.models);
-  //Vehicle.associate(sequelize.models);
+  Vehicle.associate(sequelize.models);
   //WorkMaterials.associate(sequelize.models);
-  //Order.associate(sequelize.models);
+  Order.associate(sequelize.models);
   //OrderWorkType.associate(sequelize.models);
 };
 

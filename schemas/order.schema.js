@@ -1,8 +1,8 @@
 const Joi = require("joi");
 
 const id = Joi.number().integer();
-const dateIn = Joi.date();
-const dateOut = Joi.date();
+const dateIn = Joi.string();
+const dateOut = Joi.string();
 const totalValue = Joi.number().precision(2);
 const kmsIn = Joi.number().precision(2);
 const ownerDescription = Joi.string();
@@ -10,7 +10,7 @@ const diagnostic = Joi.string();
 const workPerformed = Joi.string();
 const status = Joi.string();
 const vehicleUserId = Joi.number().integer();
-const tallerUserId = Joi.number().integer();
+
 const vehicleId = Joi.number().integer();
 
 const createOrderSchema = Joi.object({
@@ -23,7 +23,6 @@ const createOrderSchema = Joi.object({
   workPerformed: workPerformed.required(),
   status: status.required(),
   vehicleUserId: vehicleUserId.required(),
-  tallerUserId: tallerUserId.required(),
   vehicleId: vehicleId.required(),
 });
 
@@ -37,7 +36,6 @@ const updateOrderSchema = Joi.object({
   workPerformed: workPerformed,
   status: status,
   vehicleUserId: vehicleUserId,
-  tallerUserId: tallerUserId,
   vehicleId: vehicleId,
 });
 

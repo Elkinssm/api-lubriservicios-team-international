@@ -11,30 +11,45 @@ const orderSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  name: {
+  dateIn: {
     type: DataTypes.STRING,
     unique: true,
-    allowNull: false,
+    allowNUll: false,
   },
-  description: {
+  dateOut: {
     type: DataTypes.STRING,
     unique: true,
-    allowNull: true,
+    allowNUll: false,
   },
-  reference: {
-    type: DataTypes.STRING,
+  totalValue: {
+    type: DataTypes.DECIMAL,
     unique: true,
-    allowNull: false,
+    allowNUll: false,
   },
-  category: {
-    type: DataTypes.STRING,
+  kmsIn: {
+    type: DataTypes.DECIMAL,
     unique: true,
-    allowNull: false,
+    allowNUll: false,
   },
-  brand: {
+  ownerDescription: {
+    type: DataTypes.TEXT,
+    unique: true,
+    allowNUll: true,
+  },
+  diagnostic: {
+    type: DataTypes.TEXT,
+    unique: true,
+    allowNUll: false,
+  },
+  workPerformed: {
+    type: DataTypes.TEXT,
+    unique: true,
+    allowNUll: false,
+  },
+  status: {
     type: DataTypes.STRING,
     unique: true,
-    allowNull: false,
+    allowNUll: false,
   },
   createdAt: {
     allowNull: false,
@@ -68,15 +83,7 @@ const orderSchema = {
 
 class Order extends Model {
   static associate(models) {
-    this.hasMany(models.User, {
-      as: "users",
-      foreignKey: "userId",
-    });
-    this.hasMany(models.Vehicle, {
-      as: "vehicles",
-      foreignKey: "vehicleId",
-    });
-    this.belongsTo(models.OrderWorkType, { as: "orderWorkType" });
+    Order.belongsTo(models.Vehicle, { as: "vehicle" });
   }
 
   static config(sequelize) {
