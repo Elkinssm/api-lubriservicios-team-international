@@ -54,7 +54,7 @@ class WorkMaterials extends Model {
       foreignKey: "workTypeId",
     });
     this.belongsTo(models.Material, {
-      as: "wmaterial",
+      as: "material",
       foreignKey: "materialId",
     });
   }

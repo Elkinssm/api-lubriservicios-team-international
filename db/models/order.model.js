@@ -69,7 +69,7 @@ const orderSchema = {
 class Order extends Model {
   static associate(models) {
     this.hasMany(models.User, {
-      as: "vehicles",
+      as: "users",
       foreignKey: "userId",
     });
     this.hasMany(models.Vehicle, {

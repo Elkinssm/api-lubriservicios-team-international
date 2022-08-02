@@ -14,7 +14,15 @@ const sequelize = new Sequelize(URI, {
 
 setupModels(sequelize);
 
-sequelize.sync();
+sequelize
+  //.sync({ force: true })
+  .sync({ force: false })
+  .then(() => {
+    console.log("Nos hemos conectado a la base de datos");
+  })
+  .catch((error) => {
+    console.log("Se ha producido un error", error);
+  });
 
 //Crea la estructura con orm segun el schema
 
