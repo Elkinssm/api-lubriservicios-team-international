@@ -8,6 +8,7 @@ const vehicleRouter = require("./vehicle.router");
 const workTypeRouter = require("./workTypes.router");
 const workMaterialRouter = require("./workMaterials.router");
 const orderWorkTypeRouter = require("./orderWorkType.router");
+const authRouter = require("./auth.router");
 
 const routerApi = (app) => {
   const router = express.Router();
@@ -20,6 +21,7 @@ const routerApi = (app) => {
   router.use("/wort-types", workTypeRouter);
   router.use("/work-materials", workMaterialRouter);
   router.use("/order-work-types", orderWorkTypeRouter);
+  router.use("/auth", authRouter);
 };
 
 module.exports = routerApi;

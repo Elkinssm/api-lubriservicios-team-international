@@ -2,6 +2,7 @@ const express = require("express");
 
 const VehicleService = require("./../services/vehicle.service");
 const validatorHandler = require("./../middlewares/validator.handler");
+const passport = require("passport");
 const {
   createVehicleSchema,
   getVehicleSchema,
@@ -11,14 +12,18 @@ const {
 const router = express.Router();
 const service = new VehicleService();
 
-router.get("/", async (req, res, next) => {
-  try {
-    const vehicles = await service.find();
-    res.json(vehicles);
-  } catch (error) {
-    next(error);
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res, next) => {
+    try {
+      const vehicles = await service.find();
+      res.json(vehicles);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.get(
   "/:id",
