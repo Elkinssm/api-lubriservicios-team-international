@@ -66,6 +66,7 @@ class Vehicle extends Model {
       as: "vehicles",
       foreignKey: "userId",
     });
+    this.belongsTo(models.Order, { as: "order" });
   }
 
   static config(sequelize) {

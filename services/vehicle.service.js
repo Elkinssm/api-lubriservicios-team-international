@@ -11,7 +11,7 @@ class VehicleService {
   }
 
   async find() {
-    const response = await models.Vehicle.findAll();
+    const response = await models.Vehicle.findAll({});
     return response;
   }
 

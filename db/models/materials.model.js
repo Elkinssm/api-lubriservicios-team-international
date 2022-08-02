@@ -43,7 +43,9 @@ const materialSchema = {
 };
 
 class Material extends Model {
-  static associate() {}
+  static associate(models) {
+    this.belongsTo(models.WorksMaterials, { as: "workMaterial" });
+  }
 
   static config(sequelize) {
     return {

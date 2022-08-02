@@ -1,5 +1,7 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
+const { VEHICLE_TABLE } = require("./vehicle.models");
+const { USER_TABLE } = require("./user.model");
 const ORDER_TABLE = "orders";
 
 const orderSchema = {
@@ -40,32 +42,42 @@ const orderSchema = {
     field: "create_at",
     defaultValue: Sequelize.NOW,
   },
-  vehicleUserId: {
+  userId: {
     field: "user_id",
     allowNull: false,
     type: DataTypes.INTEGER,
-    // references: {
-    //   model: PRODUCT_TABLE,
-    //   key: 'id',
-    // },
+    references: {
+      model: USER_TABLE,
+      key: "id",
+    },
     onUpdate: "CASCADE",
-    onDelete: "SET NULL",
+    onDelete: "CASCADE",
   },
   vehicleId: {
     field: "vehicle_id",
     allowNull: false,
     type: DataTypes.INTEGER,
-    // references: {
-    //   model: PRODUCT_TABLE,
-    //   key: 'id',
-    // },
+    references: {
+      model: VEHICLE_TABLE,
+      key: "id",
+    },
     onUpdate: "CASCADE",
-    onDelete: "SET NULL",
+    onDelete: "CASCADE",
   },
 };
 
 class Order extends Model {
-  static associate() {}
+  static associate(models) {
+    this.hasMany(models.User, {
+      as: "vehicles",
+      foreignKey: "userId",
+    });
+    this.hasMany(models.Vehicle, {
+      as: "vehicles",
+      foreignKey: "vehicleId",
+    });
+    this.belongsTo(models.OrderWorkType, { as: "orderWorkType" });
+  }
 
   static config(sequelize) {
     return {

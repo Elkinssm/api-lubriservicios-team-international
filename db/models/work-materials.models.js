@@ -1,5 +1,8 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
+const { MATERIAL_TABLE } = require("./materials.model");
+const { WORK_TYPES_TABLE } = require("./work-types.model");
+
 const WORK_MATERIALS_TABLE = "works_materials";
 
 const workMaterialsSchema = {
@@ -18,10 +21,10 @@ const workMaterialsSchema = {
     field: "material_id",
     allowNull: false,
     type: DataTypes.INTEGER,
-    // references: {
-    //   model: PRODUCT_TABLE,
-    //   key: 'id',
-    // },
+    references: {
+      model: MATERIAL_TABLE,
+      key: "id",
+    },
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
   },
@@ -29,10 +32,10 @@ const workMaterialsSchema = {
     field: "work_type_id",
     allowNull: false,
     type: DataTypes.INTEGER,
-    // references: {
-    //   model: PRODUCT_TABLE,
-    //   key: 'id',
-    // },
+    references: {
+      model: WORK_TYPES_TABLE,
+      key: "id",
+    },
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
   },
@@ -45,7 +48,16 @@ const workMaterialsSchema = {
 };
 
 class WorkMaterials extends Model {
-  static associate() {}
+  static associate(models) {
+    this.belongsTo(models.WorksTypes, {
+      as: "worktypes",
+      foreignKey: "workTypeId",
+    });
+    this.belongsTo(models.Material, {
+      as: "wmaterial",
+      foreignKey: "materialId",
+    });
+  }
 
   static config(sequelize) {
     return {

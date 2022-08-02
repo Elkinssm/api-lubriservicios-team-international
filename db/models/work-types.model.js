@@ -28,7 +28,10 @@ const workTypesSchema = {
 };
 
 class WorkTypes extends Model {
-  static associate() {}
+  static associate(models) {
+    this.belongsTo(models.OrderWorkType, { as: "orderWorkType" });
+    this.belongsTo(models.WorksMaterials, { as: "workMaterial" });
+  }
 
   static config(sequelize) {
     return {

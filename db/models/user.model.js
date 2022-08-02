@@ -59,6 +59,7 @@ class User extends Model {
   static associate(models) {
     this.belongsTo(models.Rol, { as: "rol" });
     this.belongsTo(models.Vehicle, { as: "vehicle" });
+    this.belongsTo(models.Order, { as: "order" });
   }
 
   static config(sequelize) {
