@@ -2,6 +2,8 @@ const { Model, DataTypes, Sequelize } = require("sequelize");
 
 const VEHICLE_TABLE = "vehicle";
 
+const { USER_TABLE } = require("./user.model.js");
+
 const vehicleSchema = {
   id: {
     allowNull: false,
@@ -43,10 +45,10 @@ const vehicleSchema = {
     field: "user_id",
     allowNull: false,
     type: DataTypes.INTEGER,
-    // references: {
-    //   model: PRODUCT_TABLE,
-    //   key: 'id',
-    // },
+    references: {
+      model: USER_TABLE,
+      key: "id",
+    },
     onUpdate: "CASCADE",
     onDelete: "SET NULL",
   },
@@ -59,7 +61,12 @@ const vehicleSchema = {
 };
 
 class Vehicle extends Model {
-  static associate() {}
+  static associate(models) {
+    this.hasMany(models.User, {
+      as: "vehicles",
+      foreignKey: "userId",
+    });
+  }
 
   static config(sequelize) {
     return {

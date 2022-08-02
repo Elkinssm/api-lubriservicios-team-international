@@ -41,18 +41,7 @@ const orderSchema = {
     defaultValue: Sequelize.NOW,
   },
   vehicleUserId: {
-    field: "vehicle_user_id",
-    allowNull: false,
-    type: DataTypes.INTEGER,
-    // references: {
-    //   model: PRODUCT_TABLE,
-    //   key: 'id',
-    // },
-    onUpdate: "CASCADE",
-    onDelete: "SET NULL",
-  },
-  tallerUserId: {
-    field: "taller_user_id",
+    field: "user_id",
     allowNull: false,
     type: DataTypes.INTEGER,
     // references: {

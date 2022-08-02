@@ -11,10 +11,9 @@ class UserService {
   }
 
   async find() {
-    const response = await models.User.findAll();
-    return response;
+    const rta = await models.User.findAll();
+    return rta;
   }
-
   async findOne(id) {
     const user = await models.User.findByPk(id);
     if (!user) {

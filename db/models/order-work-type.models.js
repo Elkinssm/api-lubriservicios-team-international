@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 
-const ORDER_WORK_TYPE_TABLE = "order_work";
+const ORDER_WORK_TYPE_TABLE = "order_work_types";
 
 const orderWorkTypeSchema = {
   id: {

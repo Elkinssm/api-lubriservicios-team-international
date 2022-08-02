@@ -29,7 +29,9 @@ const rolSchema = {
 };
 
 class Rol extends Model {
-  static associate() {}
+  static associate(models) {
+    this.hasOne(models.User, { as: "user", foreignKey: "rolId" });
+  }
 
   static config(sequelize) {
     return {

@@ -11,7 +11,9 @@ class RolService {
   }
 
   async find() {
-    const response = await models.Rol.findAll();
+    const response = await models.Rol.findAll({
+      include: ["user"],
+    });
     return response;
   }
 
