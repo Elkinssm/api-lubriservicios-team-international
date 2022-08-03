@@ -50,7 +50,7 @@ class OrderWorkType extends Model {
       foreignKey: "id",
     });
     OrderWorkType.belongsTo(models.Order, {
-      as: "work-types",
+      as: "order",
       foreignKey: "id",
     });
   }

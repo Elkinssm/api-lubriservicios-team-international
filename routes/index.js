@@ -18,7 +18,7 @@ const routerApi = (app) => {
   router.use("/orders", ordersRouter);
   router.use("/rols", rolRouter);
   router.use("/vehicles", vehicleRouter);
-  router.use("/wort-types", workTypeRouter);
+  router.use("/work-types", workTypeRouter);
   router.use("/work-materials", workMaterialRouter);
   router.use("/order-work-types", orderWorkTypeRouter);
   router.use("/auth", authRouter);

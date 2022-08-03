@@ -13,7 +13,7 @@ class OrderWorkTypeService {
 
   async find() {
     const response = await models.OrderWorkType.findAll({
-      include: ["", ""],
+      include: ["work-type", "order"],
     });
     return response;
   }
