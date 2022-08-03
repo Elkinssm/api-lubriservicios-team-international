@@ -1,39 +1,42 @@
 const boom = require("@hapi/boom");
 
-const { models } = require("../libs/sequelize");
+const { models } = require("./../libs/sequelize");
 
-class OrderWorkTypesService {
+class OrderWorkTypeService {
   constructor() {}
 
   async create(data) {
-    const newOrderWorkTypes = await models.OrderWorkTypes.create(data);
-    return newOrderWorkTypes;
+    const newOrderWorkType = await models.OrderWorkType.create(data);
+
+    return newOrderWorkType;
   }
 
   async find() {
-    const response = await models.OrderWorkTypes.findAll();
+    const response = await models.OrderWorkType.findAll({
+      include: ["", ""],
+    });
     return response;
   }
 
   async findOne(id) {
-    const orderWoorkTypes = await models.OrderWorkTypes.findByPk(id);
-    if (!orderWoorkTypes) {
-      throw boom.notFound("OrderWorkType not found");
+    const ordeWorkType = await models.OrderWorkType.findByPk(id);
+    if (!ordeWorkType) {
+      throw boom.notFound("Orden Work Type not found");
     }
-    return orderWoorkTypes;
+    return ordeWorkType;
   }
 
   async update(id, changes) {
-    const orderWorkTypes = await this.findOne(id);
-    const response = orderWorkTypes.update(changes);
+    const ordeWorkType = await this.findOne(id);
+    const response = ordeWorkType.update(changes);
     return response;
   }
 
   async delete(id) {
-    const orderWorkTypes = await this.findOne(id);
-    await orderWorkTypes.destroy();
+    const ordeWorkType = await this.findOne(id);
+    await ordeWorkType.destroy();
     return { id };
   }
 }
 
-module.exports = OrderWorkTypesService;
+module.exports = OrderWorkTypeService;

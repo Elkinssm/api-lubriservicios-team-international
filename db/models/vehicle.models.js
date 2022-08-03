@@ -18,12 +18,10 @@ const vehicleSchema = {
   },
   brand: {
     type: DataTypes.STRING,
-    unique: true,
     alloNull: false,
   },
   model: {
     type: DataTypes.STRING,
-    unique: true,
     alloNull: false,
   },
   serialChasis: {
@@ -38,7 +36,6 @@ const vehicleSchema = {
   },
   color: {
     type: DataTypes.STRING,
-    unique: true,
     alloNull: false,
   },
   userId: {

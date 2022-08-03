@@ -2,23 +2,24 @@ const boom = require("@hapi/boom");
 
 const { models } = require("./../libs/sequelize");
 
-class WorkTypesService {
+class WorkTypeService {
   constructor() {}
 
   async create(data) {
-    const newWorkType = await models.WorkType.create(data);
+    const newWorkType = await models.WorksTypes.create(data);
+
     return newWorkType;
   }
 
   async find() {
-    const response = await models.WorkType.findAll();
+    const response = await models.WorksTypes.findAll();
     return response;
   }
 
   async findOne(id) {
-    const workType = await models.WorkType.findByPk(id);
+    const workType = await models.WorksTypes.findByPk(id);
     if (!workType) {
-      throw boom.notFound("WorkType not found");
+      throw boom.notFound("Work Type not found");
     }
     return workType;
   }
@@ -36,4 +37,4 @@ class WorkTypesService {
   }
 }
 
-module.exports = WorkTypesService;
+module.exports = WorkTypeService;

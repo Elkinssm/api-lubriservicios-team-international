@@ -11,12 +11,10 @@ const materialSchema = {
   },
   name: {
     type: DataTypes.STRING,
-    unique: true,
     allowNull: false,
   },
   description: {
     type: DataTypes.STRING,
-    unique: true,
     allowNull: true,
   },
   reference: {
@@ -26,12 +24,10 @@ const materialSchema = {
   },
   category: {
     type: DataTypes.STRING,
-    unique: true,
     allowNull: false,
   },
   brand: {
     type: DataTypes.STRING,
-    unique: true,
     allowNull: false,
   },
   createdAt: {

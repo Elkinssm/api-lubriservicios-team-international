@@ -13,42 +13,34 @@ const orderSchema = {
   },
   dateIn: {
     type: DataTypes.STRING,
-    unique: true,
     allowNUll: false,
   },
   dateOut: {
     type: DataTypes.STRING,
-    unique: true,
     allowNUll: false,
   },
   totalValue: {
     type: DataTypes.DECIMAL,
-    unique: true,
     allowNUll: false,
   },
   kmsIn: {
     type: DataTypes.DECIMAL,
-    unique: true,
     allowNUll: false,
   },
   ownerDescription: {
     type: DataTypes.TEXT,
-    unique: true,
     allowNUll: true,
   },
   diagnostic: {
     type: DataTypes.TEXT,
-    unique: true,
     allowNUll: false,
   },
   workPerformed: {
     type: DataTypes.TEXT,
-    unique: true,
     allowNUll: false,
   },
   status: {
     type: DataTypes.STRING,
-    unique: true,
     allowNUll: false,
   },
   createdAt: {

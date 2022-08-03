@@ -1,20 +1,20 @@
 const express = require("express");
 
-const WorkTypesService = require("../services/workTypes.service");
-const validatorHandler = require("../middlewares/validator.handler");
+const OrderWorkTypeService = require("./../services/orderWorkTypes.service");
+const validatorHandler = require("./../middlewares/validator.handler");
 const {
-  getWorkTypeSchema,
-  createWorkTypesSchema,
-  updateWorkTypeSchema,
+  getOrderWorkTypeSchema,
+  createOrderWorkTypeSchema,
+  updateOrderWorkTypeSchema,
 } = require("./../schemas/orderWorkTypes.schema");
 
 const router = express.Router();
-const service = new WorkTypesService();
+const service = new OrderWorkTypeService();
 
 router.get("/", async (req, res, next) => {
   try {
-    const workTypes = await service.find();
-    res.json(workTypes);
+    const orderWorkTypes = await service.find();
+    res.json(orderWorkTypes);
   } catch (error) {
     next(error);
   }
@@ -22,12 +22,12 @@ router.get("/", async (req, res, next) => {
 
 router.get(
   "/:id",
-  validatorHandler(getWorkTypeSchema, "params"),
+  validatorHandler(getOrderWorkTypeSchema, "params"),
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const workType = await service.findOne(id);
-      res.json(workType);
+      const orderWorkType = await service.findOne(id);
+      res.json(orderWorkType);
     } catch (error) {
       next(error);
     }
@@ -36,12 +36,12 @@ router.get(
 
 router.post(
   "/",
-  validatorHandler(createWorkTypesSchema, "body"),
+  validatorHandler(createOrderWorkTypeSchema, "body"),
   async (req, res, next) => {
     try {
       const body = req.body;
-      const newWorkType = await service.create(body);
-      res.status(201).json(newWorkType);
+      const newOrderWorkType = await service.create(body);
+      res.status(201).json(newOrderWorkType);
     } catch (error) {
       next(error);
     }
@@ -50,14 +50,14 @@ router.post(
 
 router.patch(
   "/:id",
-  validatorHandler(getWorkTypeSchema, "params"),
-  validatorHandler(updateWorkTypeSchema, "body"),
+  validatorHandler(getOrderWorkTypeSchema, "params"),
+  validatorHandler(updateOrderWorkTypeSchema, "body"),
   async (req, res, next) => {
     try {
       const { id } = req.params;
       const body = req.body;
-      const workType = await service.update(id, body);
-      res.json(workType);
+      const orderWorkType = await service.update(id, body);
+      res.json(orderWorkType);
     } catch (error) {
       next(error);
     }
@@ -66,7 +66,7 @@ router.patch(
 
 router.delete(
   "/:id",
-  validatorHandler(getWorkTypeSchema, "params"),
+  validatorHandler(getOrderWorkTypeSchema, "params"),
   async (req, res, next) => {
     try {
       const { id } = req.params;
