@@ -12,7 +12,7 @@ class VehicleService {
 
   async find() {
     const response = await models.Vehicle.findAll({
-      include: ["user"],
+      include: ["user", "order"],
     });
     return response;
   }

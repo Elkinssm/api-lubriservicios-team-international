@@ -49,13 +49,13 @@ const workMaterialsSchema = {
 
 class WorkMaterials extends Model {
   static associate(models) {
-    this.belongsTo(models.WorksTypes, {
-      as: "worktypes",
-      foreignKey: "workTypeId",
-    });
-    this.belongsTo(models.Material, {
+    WorkMaterials.belongsTo(models.Material, {
       as: "material",
-      foreignKey: "materialId",
+      foreignKey: "id",
+    });
+    WorkMaterials.belongsTo(models.WorksTypes, {
+      as: "work-types",
+      foreignKey: "id",
     });
   }
 

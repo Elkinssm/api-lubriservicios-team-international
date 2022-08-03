@@ -83,7 +83,7 @@ const orderSchema = {
 
 class Order extends Model {
   static associate(models) {
-    Order.belongsTo(models.Vehicle, { as: "vehicle" });
+    Order.belongsTo(models.Vehicle, { as: "vehicle", foreignKey: "id" });
   }
 
   static config(sequelize) {

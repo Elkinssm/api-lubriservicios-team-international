@@ -44,7 +44,10 @@ const materialSchema = {
 
 class Material extends Model {
   static associate(models) {
-    this.belongsTo(models.WorksMaterials, { as: "workMaterial" });
+    Material.belongsTo(models.WorksMaterials, {
+      as: "work-material",
+      foreignKey: "id",
+    });
   }
 
   static config(sequelize) {

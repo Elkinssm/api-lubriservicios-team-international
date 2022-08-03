@@ -30,7 +30,7 @@ const rolSchema = {
 
 class Rol extends Model {
   static associate(models) {
-    Rol.hasOne(models.User, { as: "user", foreignKey: "role_id" });
+    Rol.hasOne(models.User, { as: "user", foreignKey: "id" });
   }
 
   static config(sequelize) {

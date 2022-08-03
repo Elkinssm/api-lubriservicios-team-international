@@ -45,13 +45,13 @@ const orderWorkTypeSchema = {
 
 class OrderWorkType extends Model {
   static associate(models) {
-    this.belongsTo(models.Order, {
-      as: "order",
-      foreignKey: "orderId",
+    OrderWorkType.belongsTo(models.WorksTypes, {
+      as: "work-type",
+      foreignKey: "id",
     });
-    this.belongsTo(models.WorkType, {
-      as: "worktype",
-      foreignKey: "workTypeId",
+    OrderWorkType.belongsTo(models.Order, {
+      as: "work-types",
+      foreignKey: "id",
     });
   }
 
