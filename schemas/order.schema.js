@@ -9,8 +9,7 @@ const ownerDescription = Joi.string();
 const diagnostic = Joi.string();
 const workPerformed = Joi.string();
 const status = Joi.string();
-const vehicleUserId = Joi.number().integer();
-
+const userId = Joi.number().integer();
 const vehicleId = Joi.number().integer();
 
 const createOrderSchema = Joi.object({
@@ -22,7 +21,7 @@ const createOrderSchema = Joi.object({
   diagnostic: diagnostic.required(),
   workPerformed: workPerformed.required(),
   status: status.required(),
-  vehicleUserId: vehicleUserId.required(),
+  userId: userId.required(),
   vehicleId: vehicleId.required(),
 });
 
@@ -35,7 +34,7 @@ const updateOrderSchema = Joi.object({
   diagnostic: diagnostic,
   workPerformed: workPerformed,
   status: status,
-  vehicleUserId: vehicleUserId,
+  userId: userId,
   vehicleId: vehicleId,
 });
 
