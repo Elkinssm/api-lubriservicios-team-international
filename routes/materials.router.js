@@ -7,18 +7,25 @@ const {
   updateMaterialSchema,
   getMaterialSchema,
 } = require("./../schemas/materials.schema");
+const passport = require("passport");
+const { checkRoles } = require("../middlewares/auth.handler");
 
 const router = express.Router();
 const service = new MaterialService();
 
-router.get("/", async (req, res, next) => {
-  try {
-    const materials = await service.find();
-    res.json(materials);
-  } catch (error) {
-    next(error);
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("User", "Admin"),
+  async (req, res, next) => {
+    try {
+      const materials = await service.find();
+      res.json(materials);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.get(
   "/:id",
