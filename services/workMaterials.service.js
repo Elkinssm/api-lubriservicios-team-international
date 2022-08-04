@@ -2,23 +2,25 @@ const boom = require("@hapi/boom");
 
 const { models } = require("./../libs/sequelize");
 
-class WorkMaterialsService {
+class WorksMaterialsService {
   constructor() {}
 
   async create(data) {
-    const newWorkMaterials = await models.WorkMaterial.create(data);
-    return newWorkMaterials;
+    const newWorkMaterial = await models.WorksMaterials.create(data);
+    return newWorkMaterial;
   }
 
   async find() {
-    const response = await models.WorkMaterial.findAll();
+    const response = await models.WorksMaterials.findAll({
+      include: ["material", "work-types"],
+    });
     return response;
   }
 
   async findOne(id) {
-    const workMaterial = await models.WorkMaterial.findByPk(id);
+    const workMaterial = await models.WorksMaterials.findByPk(id);
     if (!workMaterial) {
-      throw boom.notFound("WorkMaterial not found");
+      throw boom.notFound("Order not found");
     }
     return workMaterial;
   }
@@ -36,4 +38,4 @@ class WorkMaterialsService {
   }
 }
 
-module.exports = WorkMaterialsService;
+module.exports = WorksMaterialsService;
