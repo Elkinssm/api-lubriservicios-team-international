@@ -47,11 +47,11 @@ class OrderWorkType extends Model {
   static associate(models) {
     OrderWorkType.belongsTo(models.WorksTypes, {
       as: "work-type",
-      foreignKey: "id",
+      foreignKey: "workTypeId",
     });
     OrderWorkType.belongsTo(models.Order, {
       as: "order",
-      foreignKey: "id",
+      foreignKey: "orderId",
     });
   }
 

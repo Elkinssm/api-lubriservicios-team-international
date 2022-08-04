@@ -57,7 +57,7 @@ const userSchema = {
 
 class User extends Model {
   static associate(models) {
-    User.belongsTo(models.Rol, { as: "rol", foreignKey: "id" });
+    User.belongsTo(models.Rol, { as: "rol", foreignKey: "roleId" });
     User.hasMany(models.Vehicle, { as: "vehicle", foreignKey: "id" });
   }
 

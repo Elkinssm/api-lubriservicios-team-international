@@ -51,11 +51,11 @@ class WorkMaterials extends Model {
   static associate(models) {
     WorkMaterials.belongsTo(models.Material, {
       as: "material",
-      foreignKey: "id",
+      foreignKey: "materialId",
     });
     WorkMaterials.belongsTo(models.WorksTypes, {
       as: "work-types",
-      foreignKey: "id",
+      foreignKey: "workTypeId",
     });
   }
 
