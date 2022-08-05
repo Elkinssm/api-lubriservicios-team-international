@@ -7,21 +7,30 @@ const {
   createworkMaterialSchema,
   updateworkMaterialSchema,
 } = require("./../schemas/workMaterials.schema");
+const passport = require("passport");
+const { checkRoles } = require("../middlewares/auth.handler");
 
 const router = express.Router();
 const service = new WorkTypesService();
 
-router.get("/", async (req, res, next) => {
-  try {
-    const workMaterials = await service.find();
-    res.json(workMaterials);
-  } catch (error) {
-    next(error);
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker", "Mechanical"),
+  async (req, res, next) => {
+    try {
+      const workMaterials = await service.find();
+      res.json(workMaterials);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.get(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker", "Mechanical"),
   validatorHandler(getworkMaterialSchema, "params"),
   async (req, res, next) => {
     try {
@@ -36,6 +45,8 @@ router.get(
 
 router.post(
   "/",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker"),
   validatorHandler(createworkMaterialSchema, "body"),
   async (req, res, next) => {
     try {
@@ -50,6 +61,8 @@ router.post(
 
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker"),
   validatorHandler(getworkMaterialSchema, "params"),
   validatorHandler(updateworkMaterialSchema, "body"),
   async (req, res, next) => {
@@ -66,6 +79,8 @@ router.patch(
 
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin"),
   validatorHandler(getworkMaterialSchema, "params"),
   async (req, res, next) => {
     try {

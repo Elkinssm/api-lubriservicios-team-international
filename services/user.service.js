@@ -27,6 +27,12 @@ class UserService {
     const response = await models.User.findOne({
       where: { email },
     });
+    if (response) {
+      const id = response.roleId;
+      response.role = await models.Rol.findOne({
+        where: { id },
+      });
+    }
     return response;
   }
 

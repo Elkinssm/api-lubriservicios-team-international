@@ -7,21 +7,30 @@ const {
   createOrderWorkTypeSchema,
   updateOrderWorkTypeSchema,
 } = require("./../schemas/orderWorkTypes.schema");
+const passport = require("passport");
+const { checkRoles } = require("../middlewares/auth.handler");
 
 const router = express.Router();
 const service = new OrderWorkTypeService();
 
-router.get("/", async (req, res, next) => {
-  try {
-    const orderWorkTypes = await service.find();
-    res.json(orderWorkTypes);
-  } catch (error) {
-    next(error);
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker", "Mechanical"),
+  async (req, res, next) => {
+    try {
+      const orderWorkTypes = await service.find();
+      res.json(orderWorkTypes);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.get(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker", "Mechanical"),
   validatorHandler(getOrderWorkTypeSchema, "params"),
   async (req, res, next) => {
     try {
@@ -36,6 +45,8 @@ router.get(
 
 router.post(
   "/",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker", "Mechanical"),
   validatorHandler(createOrderWorkTypeSchema, "body"),
   async (req, res, next) => {
     try {
@@ -50,6 +61,8 @@ router.post(
 
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker", "Mechanical"),
   validatorHandler(getOrderWorkTypeSchema, "params"),
   validatorHandler(updateOrderWorkTypeSchema, "body"),
   async (req, res, next) => {
@@ -66,6 +79,8 @@ router.patch(
 
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin"),
   validatorHandler(getOrderWorkTypeSchema, "params"),
   async (req, res, next) => {
     try {

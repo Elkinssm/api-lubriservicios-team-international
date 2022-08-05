@@ -16,7 +16,7 @@ const service = new MaterialService();
 router.get(
   "/",
   passport.authenticate("jwt", { session: false }),
-  checkRoles("User", "Admin"),
+  checkRoles("Admin", "Worker", "Mechanical"),
   async (req, res, next) => {
     try {
       const materials = await service.find();
@@ -29,6 +29,8 @@ router.get(
 
 router.get(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker", "Mechanical"),
   validatorHandler(getMaterialSchema, "params"),
   async (req, res, next) => {
     try {
@@ -43,6 +45,8 @@ router.get(
 
 router.post(
   "/",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker", "Mechanical"),
   validatorHandler(createMaterialSchema, "body"),
   async (req, res, next) => {
     try {
@@ -57,6 +61,8 @@ router.post(
 
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker", "Mechanical"),
   validatorHandler(getMaterialSchema, "params"),
   validatorHandler(updateMaterialSchema, "body"),
   async (req, res, next) => {
@@ -73,6 +79,8 @@ router.patch(
 
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin"),
   validatorHandler(getMaterialSchema, "params"),
   async (req, res, next) => {
     try {

@@ -19,7 +19,6 @@ const createUserSchema = Joi.object({
   documentType: documentType.required(),
   address: address.required(),
   name: name.required(),
-  role: role,
   roleId: roleId.required(),
 });
 
@@ -32,7 +31,6 @@ const updateUserSchema = Joi.object({
   address: address,
   name: name,
   roleId: roleId,
-  role: role,
 });
 
 const getUserSchema = Joi.object({

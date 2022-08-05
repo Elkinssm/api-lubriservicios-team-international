@@ -8,13 +8,16 @@ const {
   getVehicleSchema,
   updateVehicleSchema,
 } = require("./../schemas/vehicle.schema");
+const passport = require("passport");
+const { checkRoles } = require("../middlewares/auth.handler");
 
 const router = express.Router();
 const service = new VehicleService();
 
 router.get(
   "/",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker", "Mechanical"),
   async (req, res, next) => {
     try {
       const vehicles = await service.find();
@@ -27,6 +30,8 @@ router.get(
 
 router.get(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker", "Mechanical"),
   validatorHandler(getVehicleSchema, "params"),
   async (req, res, next) => {
     try {
@@ -41,6 +46,8 @@ router.get(
 
 router.post(
   "/",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker"),
   validatorHandler(createVehicleSchema, "body"),
   async (req, res, next) => {
     try {
@@ -55,6 +62,8 @@ router.post(
 
 router.patch(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin", "Worker"),
   validatorHandler(getVehicleSchema, "params"),
   validatorHandler(updateVehicleSchema, "body"),
   async (req, res, next) => {
@@ -71,6 +80,8 @@ router.patch(
 
 router.delete(
   "/:id",
+  passport.authenticate("jwt", { session: false }),
+  checkRoles("Admin"),
   validatorHandler(getVehicleSchema, "params"),
   async (req, res, next) => {
     try {
