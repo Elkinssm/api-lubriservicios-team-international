@@ -60,7 +60,7 @@ const vehicleSchema = {
 class Vehicle extends Model {
   static associate(models) {
     Vehicle.belongsTo(models.User, { as: "user", foreignKey: "userId" });
-    Vehicle.hasMany(models.Order, { as: "order", foreignKey: "orderid" });
+    Vehicle.hasMany(models.Order, { as: "order", foreignKey: "orderId" });
   }
 
   static config(sequelize) {
