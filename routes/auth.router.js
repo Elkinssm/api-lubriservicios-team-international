@@ -18,7 +18,7 @@ router.post(
         role: user.role,
       };
       console.log(payload);
-      const token = jwt.sign(payload, config.jwtSecret , {expiresIn:'1h'});
+      const token = jwt.sign(payload, config.jwtSecret , {expiresIn:'14d'});
       res.json({
         user,
         token,

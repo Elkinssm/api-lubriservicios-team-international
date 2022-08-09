@@ -19,6 +19,7 @@ class UserService {
   async find() {
     const response = await models.User.findAll({
       include: ["rol", "vehicle"],
+      attributes:{exclude: ['password']}
     });
     return response;
   }

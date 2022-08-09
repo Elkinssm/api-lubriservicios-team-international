@@ -31,6 +31,10 @@ const userSchema = {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   documentType: {
     type: DataTypes.STRING,
     allowNull: true,
