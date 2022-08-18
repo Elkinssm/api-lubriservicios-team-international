@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 const id = Joi.number().integer();
-const workTypeId = Joi.number().integer();
+const workTypeId = Joi.array();
 const orderId = Joi.number().integer();
 
 const createOrderWorkTypeSchema = Joi.object({

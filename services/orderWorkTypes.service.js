@@ -3,13 +3,28 @@ const boom = require("@hapi/boom");
 const { models } = require("./../libs/sequelize");
 
 class OrderWorkTypeService {
-  constructor() {}
+  constructor() { }
 
   async create(data) {
-    const newOrderWorkType = await models.OrderWorkType.create(data);
 
-    return newOrderWorkType;
+    const saveWorkType = async (workType) => {
+      const newOrderWorkType = await models.OrderWorkType.create(workType);
+      return newOrderWorkType;
+    }
+
+    const ids = [];
+    data.workTypeId.forEach(async (element) => {
+      const workType = {
+        workTypeId: element,
+        orderId: data.orderId
+      };
+      const id = await saveWorkType(workType);
+      ids.push(id);
+    });
+    return ids;
   }
+
+
 
   async find() {
     const response = await models.OrderWorkType.findAll({
